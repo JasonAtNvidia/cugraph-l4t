@@ -38,7 +38,7 @@ project(CUGRAPH VERSION 21.08.00 LANGUAGES C CXX CUDA)
 #
 # < 60
 # >= 86
-set(supported_archs "60" "62" "70" "72" "75" "80")
+set(supported_archs "60" "62" "70" "72" "75" "80" "87")
 foreach( arch IN LISTS CMAKE_CUDA_ARCHITECTURES)
     string(REPLACE "-real" "" arch ${arch})
     if( arch IN_LIST supported_archs )
