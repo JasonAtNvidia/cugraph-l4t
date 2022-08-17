@@ -7,7 +7,7 @@
 {% set cuda_version='.'.join(environ.get('CUDA', 'unknown').split('.')[:2]) %}
 {% set py_version=environ.get('CONDA_PY', 36) %}
 package:
-  name: cugraph
+  name: cugraph-l4t
   version: {{ version }}
 
 source:
@@ -26,22 +26,20 @@ requirements:
   build:
     - python x.x
     - cython>=0.29,<0.30
-    - libcugraph={{ version }}
-    - cudf={{ minor_version }}
-    - ucx-py 0.21
-    - ucx-proc=*=gpu
-    - cudatoolkit {{ cuda_version }}.*
+    - libcugraph-l4t={{ version }}
+    - cudf-l4t={{ minor_version }}
+    - ucx-py-l4t
+    - ucx-proc-l4t=*=gpu
   run:
     - python x.x
-    - libcugraph={{ version }}
-    - cudf={{ minor_version }}
-    - dask-cudf {{ minor_version }}
+    - libcugraph-l4t={{ version }}
+    - cudf-l4t={{ minor_version }}
+    - dask-cudf-l4t {{ minor_version }}
     - dask-cuda {{ minor_version }}
     - dask>=2021.6.0,<=2021.07.1
     - distributed>=2021.6.0,<=2021.07.1
-    - ucx-py 0.21
-    - ucx-proc=*=gpu
-    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+    - ucx-py-l4t
+    - ucx-proc-l4t=*=gpu
 
 about:
   home: http://rapids.ai/

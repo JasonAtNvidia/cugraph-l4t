@@ -6,7 +6,7 @@
 {% set minor_version =  version.split('.')[0] + '.' + version.split('.')[1] %}
 {% set cuda_version='.'.join(environ.get('CUDA', '9.2').split('.')[:2]) %}
 package:
-  name: libcugraph
+  name: libcugraph-l4t
   version: {{ version }}
 
 source:
@@ -32,21 +32,19 @@ build:
 requirements:
   build:
     - cmake>=3.20.1
-    - cudatoolkit {{ cuda_version }}.*
-    - librmm {{ minor_version }}.*
+    - librmm-l4t {{ minor_version }}.*
     - boost-cpp>=1.66
-    - nccl>=2.9.9
-    - ucx-proc=*=gpu
+    - nccl-l4t>=2.9.9
+    - ucx-proc-l4t=*=gpu
     - gtest
     - gmock
-    - faiss-proc=*=cuda
-    - libfaiss 1.7.0 *_cuda
+    - faiss-proc=*=cuda_l4t
+    - libfaiss 1.7.2 *_cuda_l4t
   run:
-    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
-    - nccl>=2.9.9
-    - ucx-proc=*=gpu
-    - faiss-proc=*=cuda
-    - libfaiss 1.7.0 *_cuda
+    - nccl-l4t>=2.9.9
+    - ucx-proc-l4t=*=gpu
+    - faiss-proc=*=cuda_l4t
+    - libfaiss 1.7.2 *_cuda_l4t
 
 about:
   home: http://rapids.ai/

@@ -163,6 +163,10 @@ if buildAll || hasArg libcugraph; then
     fi
     mkdir -p ${LIBCUGRAPH_BUILD_DIR}
     cd ${LIBCUGRAPH_BUILD_DIR}
+    
+    # Forcefully building for just supported Jetson Architectures
+    CUGRAPH_CMAKE_CUDA_ARCHITECTURES="72;87"
+    
     cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} \
           -DCMAKE_CUDA_ARCHITECTURES=${CUGRAPH_CMAKE_CUDA_ARCHITECTURES} \
           -DDISABLE_DEPRECATION_WARNING=${BUILD_DISABLE_DEPRECATION_WARNING} \
